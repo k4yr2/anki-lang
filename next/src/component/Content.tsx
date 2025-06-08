@@ -2,33 +2,9 @@
 
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import { useState, useEffect } from "react";
-import { extendTheme } from '@mui/joy/styles';
-import { amber } from "@mui/material/colors";
 import { Provider } from "react-redux";
 import store from "@/data/store";
-
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        background: {
-          body: '#f3f4f6',
-          surface: '#e5e7eb',
-        },
-        warning: amber,
-      },
-    },
-    dark: {
-      palette: {
-        background: {
-          body: '#1c1c1f',        // Göz yormayan koyu gri
-          surface: '#2a2a2e',     // Hafif kontrast yüzey
-        },
-        warning: amber
-      },
-    },
-  }
-});
+import { mainTheme } from "@fuuwille/mui-joy";
 
 const Content = ({ children } : { children : React.ReactNode}) => {
     const [isClient, setIsClient] = useState(false)
@@ -41,7 +17,7 @@ const Content = ({ children } : { children : React.ReactNode}) => {
 
     return (
       <Provider store={store}>
-        <CssVarsProvider theme={theme}>
+        <CssVarsProvider theme={mainTheme}>
           <CssBaseline />
           {children}
         </CssVarsProvider>
