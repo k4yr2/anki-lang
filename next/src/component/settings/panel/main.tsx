@@ -3,7 +3,6 @@ import { useState } from "react";
 import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
-import { green, yellow } from "@mui/material/colors";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/data/store";
 import { setOpenAIKey, setOpenAIStatus } from "@/slice/settings";
