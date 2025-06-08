@@ -64,26 +64,11 @@ const SP_OpenAIKey = () => {
                         value={key}
                         onChange={(e) => { setKey(e.target.value); }}
                         size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
-                        startDecorator= {
-                            <IconButton 
-                                loading={openAI.status == "loading"} 
-                                variant="plain" 
-                                sx={{
-                                    color: green[500],
-                                    pointerEvents : "none",
-                                    '&:hover': {
-                                        backgroundColor: 'transparent',
-                                        boxShadow: 'none',
-                                    },
-                                }}
-                            >
-                                {renderIcon()}
-                            </IconButton>
-                        }
-                        endDecorator={
+
+                        startDecorator={
                             <Button 
-                                variant="solid" 
-                                color="primary" 
+                                variant="soft" 
+                                color="neutral" 
                                 onClick={validateKey} 
                                 disabled={openAI.status === "loading"}
                             >
