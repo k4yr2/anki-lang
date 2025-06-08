@@ -3,7 +3,7 @@
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import { useState, useEffect } from "react";
 import { extendTheme } from '@mui/joy/styles';
-import { amber, yellow } from "@mui/material/colors";
+import { amber } from "@mui/material/colors";
 import { Provider } from "react-redux";
 import store from "@/data/store";
 
@@ -15,7 +15,7 @@ const theme = extendTheme({
           body: '#f3f4f6',
           surface: '#e5e7eb',
         },
-        warning: amber
+        warning: amber,
       },
     },
     dark: {
