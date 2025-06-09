@@ -23,6 +23,8 @@ export const OpenAIKey = () => {
         }, 1500);
     };
 
+    const isLoading = openAI.status === "loading";
+
     return (
         <>
             <Grid xs={12} sm={2.5} sx={labelSx}>
@@ -34,15 +36,15 @@ export const OpenAIKey = () => {
                         value={key}
                         onChange={(e) => { setKey(e.target.value); }}
                         size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
-                        disabled={openAI.status === "loading"}
+                        disabled={isLoading}
 
                         startDecorator={
                             <Button 
                                 variant="soft" 
                                 color="neutral" 
                                 onClick={validateKey} 
-                                disabled={openAI.status === "loading"}
-                                loading={openAI.status === "loading"}
+                                disabled={isLoading}
+                                loading={isLoading}
                                 sx={{minWidth: 36, px: 1}}
                             >
                                 {{
