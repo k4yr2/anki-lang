@@ -3,7 +3,7 @@
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
-import store from "@/data/store";
+import store from "@/data/store/app";
 import { mainTheme } from "@fuuwille/mui-joy";
 
 const Content = ({ children } : { children : React.ReactNode}) => {
