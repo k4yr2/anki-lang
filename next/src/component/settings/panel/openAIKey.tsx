@@ -58,12 +58,7 @@ export const OpenAIKey = () => {
                                 disabled={isLoading}
                                 sx={{width: 80}}
                             >
-                                {{
-                                    idle: <>Verify</>,
-                                    loading: <>Verifying</>,
-                                    error: <>Retry</>,
-                                    success: <>Verify</>,
-                                }[openAI.status] || "Validate"}
+                                Verify
                             </Button>
                         }
                     />
