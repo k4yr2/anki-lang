@@ -39,7 +39,7 @@ export const OpenAIKey = () => {
                         disabled={isLoading}
                         startDecorator={
                             <>
-                                <Box sx={{ width: 32, display: 'flex', alignItems: 'center', pr: 1, justifyContent: 'center' }}>    
+                                <Box sx={{ width: 24, display: 'flex', alignItems: 'center', pr: isLoading ? 1.5 : 1, justifyContent: 'center' }}>    
                                     {{
                                         idle: <>Hl</>,
                                         loading: <CircularProgress size="sm" color="primary" />,
@@ -47,7 +47,7 @@ export const OpenAIKey = () => {
                                         success: <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />,
                                     }[openAI.status] || null}
                                 </Box>
-                                <Divider orientation="vertical" sx={{mx:0.1}}/>
+                                <Divider orientation="vertical" sx={{mx:0}}/>
                             </>
                         }
                         endDecorator={
