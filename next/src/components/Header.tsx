@@ -1,5 +1,5 @@
 "use client";
-import style from "@/style/Header.module.css";
+import style from "@/styles/Header.module.css";
 import { Settings as SettingsIcon } from "@deemlol/next-icons";
 import clsx from "clsx";
 import Link from "next/link";
