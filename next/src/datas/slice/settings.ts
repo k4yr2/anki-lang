@@ -1,4 +1,4 @@
-import AppSettings from "@/states/appSettings";
+import AppSettings from "@/interfaces/appSettings";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: AppSettings = {
