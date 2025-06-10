@@ -40,12 +40,11 @@ export const OpenAIKey = () => {
                         startDecorator={
                             <>
                                 <Box sx={{ width: 24, display: 'flex', alignItems: 'center', pr: isLoading ? 1.5 : 1, justifyContent: 'center' }}>    
-                                    {{
-                                        idle: <>Hl</>,
-                                        loading: <CircularProgress size="sm" color="primary" />,
-                                        error: <ErrorIcon sx={{ color: theme.palette.danger[500] }} />,
-                                        success: <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />,
-                                    }[openAI.status] || null}
+                                    {   
+                                        isLoading ? <CircularProgress size="sm" color="primary" />
+                                        : openAI.status === "success" ? <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />
+                                        : <ErrorIcon sx={{ color: theme.palette.danger[400] }} />
+                                    }
                                 </Box>
                                 <Divider orientation="vertical" sx={{mx:0}}/>
                             </>
