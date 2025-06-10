@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import { settingsPanel_labelSx as labelSx } from "./main";
+import { OpenAIVerify } from "@/api/openAI/verify";
 
 export const OpenAIKey = () => {
     const theme = useTheme();
@@ -14,12 +15,17 @@ export const OpenAIKey = () => {
 
     const dispatch = useDispatch<AppDispatch>();
 
-    const validateKey = () => {
+    const verifyKey = () => {
         dispatch(setOpenAIStatus("loading"));
-
-        setTimeout(() => {
-            dispatch(setOpenAIStatus(openAI.status == "success" ? "idle" : "success"));
-        }, 1500);
+        OpenAIVerify(key).then(verified => {
+            if (verified) {
+                dispatch(setOpenAIKey(key));
+                dispatch(setOpenAIStatus("success"));
+            }
+            else {
+                dispatch(setOpenAIStatus("error"));
+            }
+        });
     };
 
     const isLoading = openAI.status === "loading";
@@ -52,7 +58,7 @@ export const OpenAIKey = () => {
                             <Button 
                                 variant="soft" 
                                 color="neutral" 
-                                onClick={validateKey} 
+                                onClick={verifyKey} 
                                 disabled={isLoading}
                                 sx={{width: 80}}
                             >
