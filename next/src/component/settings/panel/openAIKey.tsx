@@ -56,10 +56,14 @@ export const OpenAIKey = () => {
                                 color="neutral" 
                                 onClick={validateKey} 
                                 disabled={isLoading}
-                                loading={isLoading}
-                                sx={{minWidth: 36}}
+                                sx={{width: 80}}
                             >
-                      
+                                {{
+                                    idle: <>Verify</>,
+                                    loading: <>Verifying</>,
+                                    error: <>Retry</>,
+                                    success: <>Verify</>,
+                                }[openAI.status] || "Validate"}
                             </Button>
                         }
                     />
