@@ -1,6 +1,6 @@
 import { RootState, AppDispatch } from "@/data/store";
 import { setOpenAIStatus, setOpenAIKey } from "@/slice/settings";
-import { FormLabel, FormControl, Input, Button, Grid, useTheme, Box } from "@mui/joy";
+import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ErrorIcon from "@mui/icons-material/Error";
@@ -37,22 +37,29 @@ export const OpenAIKey = () => {
                         onChange={(e) => { setKey(e.target.value); }}
                         size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
                         disabled={isLoading}
-
                         startDecorator={
+                            <>
+                                <Box sx={{ width: 32, display: 'flex', alignItems: 'center', pr: 1, justifyContent: 'center' }}>    
+                                    {{
+                                        idle: <>Hl</>,
+                                        loading: <CircularProgress size="sm" color="primary" />,
+                                        error: <ErrorIcon sx={{ color: theme.palette.danger[500] }} />,
+                                        success: <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />,
+                                    }[openAI.status] || null}
+                                </Box>
+                                <Divider orientation="vertical" sx={{mx:0.1}}/>
+                            </>
+                        }
+                        endDecorator={
                             <Button 
                                 variant="soft" 
                                 color="neutral" 
                                 onClick={validateKey} 
                                 disabled={isLoading}
                                 loading={isLoading}
-                                sx={{minWidth: 36, px: 1}}
+                                sx={{minWidth: 36}}
                             >
-                                {{
-                                    idle: <>Verify</>,
-                                    loading: null,
-                                    error: <ErrorIcon sx={{ color: theme.palette.danger[500] }} />,
-                                    success: <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />,
-                                }[openAI.status] || null}                          
+                      
                             </Button>
                         }
                     />
