@@ -1,5 +1,5 @@
-import { RootState, AppDispatch } from "@/data/store/app";
-import { setOpenAIStatus, setOpenAIKey } from "@/data/slice/settings";
+import { RootState, AppDispatch } from "@/datas/store/app";
+import { setOpenAIStatus, setOpenAIKey } from "@/datas/slice/settings";
 import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
