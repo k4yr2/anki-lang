@@ -1,5 +1,5 @@
 "use client";
-import SettingsPanel from "@/component/settings/panel/main";
+import SettingsPanel from "@/components/settings/panel/main";
 
 export default function SettingsPage() {
 
