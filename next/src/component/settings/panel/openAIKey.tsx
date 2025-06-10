@@ -3,9 +3,8 @@ import { setOpenAIStatus, setOpenAIKey } from "@/slice/settings";
 import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
-import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
+import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import { settingsPanel_labelSx as labelSx } from "./main";
 
 export const OpenAIKey = () => {
@@ -43,7 +42,7 @@ export const OpenAIKey = () => {
                                     {   
                                         isLoading ? <CircularProgress size="sm" color="primary" />
                                         : openAI.status === "success" ? <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />
-                                        : <ErrorIcon sx={{ color: theme.palette.danger[400] }} />
+                                        : <DangerousOutlinedIcon sx={{ color: theme.palette.danger["solidBg"] }} />
                                     }
                                 </Box>
                                 <Divider orientation="vertical" sx={{mx:0}}/>
