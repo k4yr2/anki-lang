@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: AppSettings = {
     openAI: {
-        key: '',
         status: 'idle'
     }
 };
@@ -13,7 +12,7 @@ const settingsSlice = createSlice({
     initialState,
     reducers: {
         setOpenAIKey: (state, action) => {
-            state.openAI.key = action.payload;
+            window.settings.openAI.setKey(action.payload);
         },
         setOpenAIStatus: (state, action) => {
             state.openAI.status = action.payload;
