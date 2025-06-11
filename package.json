@@ -6,7 +6,7 @@
     "dev:next": "cd next && npm run dev",
     "dev:electron": "wait-on http://localhost:3000 && cd electron && npm run dev",
     "dev": "concurrently -k \"npm run dev:next\" \"npm run dev:electron\"",
-    "build:next": "cd next && npm run build && rimraf ../electron/app && cpy \"out/**/*\" ../electron/app --parents",
+    "build:next": "cd next && npm run build && cd .. && npx rimraf electron/app && npx cpy \"next/out/**/*\" electron/app --parents",
     "build:electron": "cd electron && npm run build",
     "build": "npm run build:next && npm run build:electron"
   },
