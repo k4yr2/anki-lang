@@ -1,6 +1,6 @@
 "use client";
 import { RootState, AppDispatch } from "@/datas/store/app";
-import { setOpenAILoading, setOpenAIVerified, setOpenAIKey } from "@/datas/slice/settings";
+import { saveOpenAIKey } from "@/datas/slice/settings";
 import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,27 +18,7 @@ export const OpenAIKey = () => {
 
     useEffect(() => {
         setInput(key.value);
-        verifyKey();
     }, [key.value]);
-
-    const verifyKey = () => {
-        dispatch(setOpenAILoading(true));
-
-        OpenAIVerify(input).then(verified => {
-            if (verified) {
-                dispatch(setOpenAIKey(input));
-                dispatch(setOpenAIVerified(true));
-            }
-            else {
-                dispatch(setOpenAIVerified(false));
-            }
-        });
-
-        setTimeout(() => {
-            if(key.loading)
-            dispatch(setOpenAIVerified(false));
-        }, 5000);
-    };
 
     return (
         <>
@@ -68,7 +48,7 @@ export const OpenAIKey = () => {
                             <Button 
                                 variant="soft" 
                                 color="neutral" 
-                                onClick={verifyKey} 
+                                onClick={() => { dispatch(saveOpenAIKey(input)); }} 
                                 disabled={key.loading}
                                 sx={{width: 80}}
                             >

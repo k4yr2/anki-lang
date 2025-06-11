@@ -1,5 +1,6 @@
+import { OpenAIVerify } from "@/api/openAI/verify";
 import AppSettings from "@/interfaces/appSettings";
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: AppSettings = {
     openAI: {
@@ -25,10 +26,30 @@ const settingsSlice = createSlice({
         setOpenAILoading: (state, action : PayloadAction<boolean>) => {
             state.openAI.key.loading = action.payload;
         },
-
     }
 });
 
 export default settingsSlice.reducer;
 
-export const { setOpenAIKey, setOpenAIVerified, setOpenAILoading } = settingsSlice.actions;
+//
+
+export const saveOpenAIKey = createAsyncThunk(
+    'settings/saveOpenAIKey', async (key: string | undefined, { dispatch }) => {
+        
+        if(!key || key === '') {
+            dispatch(setOpenAIKey(''));
+            dispatch(setOpenAIVerified(false));
+            return;
+        }
+
+        dispatch(setOpenAILoading(true));
+        
+        await window.settings.openAI.setKey(key);
+        dispatch(setOpenAIKey(key));
+
+        const verified = await OpenAIVerify(key);
+        dispatch(setOpenAIVerified(verified));
+    }
+);
+
+const { setOpenAIKey, setOpenAIVerified, setOpenAILoading } = settingsSlice.actions;

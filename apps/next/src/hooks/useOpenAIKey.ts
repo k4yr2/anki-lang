@@ -1,4 +1,4 @@
-import { setOpenAIKey } from '@/datas/slice/settings';
+import { saveOpenAIKey } from '@/datas/slice/settings';
 import { AppDispatch, RootState } from '@/datas/store/app';
 import { OpenAIKey } from '@/interfaces/openAI';
 import { useEffect } from 'react';
@@ -13,7 +13,7 @@ export const useOpenAIKey = () : OpenAIKey => {
         if(!value || value === '') {
             (async () => {
                 const key = await window.settings.openAI.getKey();
-                dispatch(setOpenAIKey(key));
+                dispatch(saveOpenAIKey(key));
             })();
         }
     }, [openAI.key.value]);
