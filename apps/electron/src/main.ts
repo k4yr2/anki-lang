@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut } from 'electron';
+import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import path from 'path';
 
@@ -63,3 +63,13 @@ function createWindow() {
         }
     });
 })()
+
+ipcMain.on('settings.openAI.getKey', (event) => {
+    const key = window.settings?.openAI?.getKey();
+    event.returnValue = key || null;
+});
+
+ipcMain.on('settings.openAI.setKey', (event, value) => {
+    window.settings?.openAI?.setKey(value);
+    event.returnValue = true;
+});

@@ -15,7 +15,12 @@
     "outDir": "app"
   },
   "include": [
-    "*.ts",
+    "src/**/*.ts",
     "../../types/",
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "app",
   ]
 }
