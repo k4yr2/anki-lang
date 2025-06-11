@@ -5,7 +5,9 @@
   "scripts": {
     "dev:next": "cd next && npm run dev",
     "dev:electron": "wait-on http://localhost:3000 && cd electron && npm run dev",
-    "dev": "concurrently -k \"npm run dev:next\" \"npm run dev:electron\""
+    "dev": "concurrently -k \"npm run dev:next\" \"npm run dev:electron\"",
+    "build:next": "cd next && npm run build",
+    "build:electron": "cd next"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +15,7 @@
   "type": "commonjs",
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "rimraf": "^6.0.1",
     "wait-on": "^8.0.3"
   }
 }
