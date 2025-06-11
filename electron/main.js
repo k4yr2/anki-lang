@@ -1,5 +1,6 @@
 import { app, BrowserWindow, globalShortcut } from 'electron';
 import serve from 'electron-serve';
+import path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu');
 const isProd = !process.defaultApp;
@@ -11,6 +12,7 @@ function createWindow() {
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: false,
+            preload: path.join(app.getAppPath(), 'preload.js'),
         },
     });
     win.setMenu(null);
