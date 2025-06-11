@@ -8,14 +8,14 @@ import { usePathname } from "next/navigation";
 const Header = () => {
     return (
         <header className={style.header}>
-            <Settings />
+            <HeaderSettings />
         </header>
     )
 };
 
 export default Header;
 
-const Settings = () => {
+const HeaderSettings = () => {
     const pathName = usePathname();
     const active = pathName.startsWith('/settings')
     const href = active ? '/' : '/settings';
