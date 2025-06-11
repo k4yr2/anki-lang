@@ -1,6 +1,3 @@
-export const dynamic = "force-static";
-
-import { NextResponse } from 'next/server';
 import axios from 'axios';
 
 export async function OpenAIVerify(key : string) : Promise<boolean> {

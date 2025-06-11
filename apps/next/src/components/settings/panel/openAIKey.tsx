@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import { settingsPanel_labelSx as labelSx } from "./main";
-import { OpenAIVerify } from "@/api/openAI/verify";
+import { OpenAIVerify } from "../../../../app/api/openAI/verify";
 
 export const OpenAIKey = () => {
     const theme = useTheme();
