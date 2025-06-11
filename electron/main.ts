@@ -19,7 +19,11 @@ function createWindow(): void {
     mainWindow.setMenu(null);
 
     if(app.isPackaged) {
-        mainWindow.loadFile(path.join(__dirname, 'next', 'index.html'));
+        const appPath = app.getAppPath();
+        const indexPath = path.join(appPath, "next", "index.html");
+        mainWindow.loadFile(indexPath).catch(err => {
+            console.error("Error loading file:", err);
+        });
     }
     else {
         mainWindow.loadURL('http://localhost:3000');
