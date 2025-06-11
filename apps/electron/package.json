@@ -8,14 +8,13 @@
     "name": "Kayra",
     "email": "kyrzkaya@gmail.com"
   },
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "dev": "electron .",
-    "build": "electron-builder"
+    "dev": "npx tsc && electron .",
+    "build": "npx tsc && electron-builder"
   },
   "keywords": [],
   "license": "ISC",
-  "type": "module",
   "devDependencies": {
     "@types/node": "^22.15.30",
     "electron": "^34.5.8",
