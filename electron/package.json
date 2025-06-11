@@ -1,7 +1,7 @@
 {
   "name": "electron",
   "version": "1.0.0",
-  "description": "",
+  "description": "Anki Lang Electron App",
   "homepage": "https://www.electron.build/configuration#metadata",
   "author": {
     "name": "Kayra",
@@ -37,7 +37,8 @@
     "linux": {
       "target": [
         "AppImage"
-      ]
+      ],
+      "category": "Utility"
     }
   },
   "dependencies": {
