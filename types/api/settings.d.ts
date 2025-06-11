@@ -1,6 +1,6 @@
 export interface SettingsAPI {
     openAI: {
-        getKey: () => string | undefined;
-        setKey: (value: string) => void;
+        getKey: () => Promise<string | undefined>;
+        setKey: (value: string) => Promise<void>;
     };
 }
