@@ -1,7 +1,7 @@
 import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
 import serve from 'electron-serve';
 import path from 'path';
-import { getSettingsValue, setSettingsValue } from './store/settings';
+import { settingsStore } from './store/settings.js';
 
 app.commandLine.appendSwitch('disable-gpu');
 const isProd = !process.defaultApp;
@@ -28,14 +28,13 @@ function createWindow() {
     return win;
 }
 
-(async () => {
-    if (isProd) {
-        serve({ directory: "app" })
-    } else {
-        app.setPath('userData', `${app.getPath('userData')} (development)`)
-    }
+if (isProd) {
+    serve({ directory: "app" })
+} else {
+    app.setPath('userData', `${app.getPath('userData')} (development)`)
+}
 
-    await app.whenReady();
+app.whenReady().then(() => {
 
     const win = createWindow();
     let hasFocused = false;
@@ -63,12 +62,12 @@ function createWindow() {
             app.quit();
         }
     });
-})()
+});
 
 ipcMain.handle('settings.openAI.getKey', () => {
-    return getSettingsValue("openAI.key") || null;
+    return settingsStore.get("openAI.key") || null;
 });
 
 ipcMain.handle('settings.openAI.setKey', (_, value) => {
-    setSettingsValue("openAI.key", value);
+    settingsStore.set("openAI.key", value);
 });
