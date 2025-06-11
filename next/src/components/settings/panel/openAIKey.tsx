@@ -17,6 +17,7 @@ export const OpenAIKey = () => {
 
     const verifyKey = () => {
         dispatch(setOpenAIStatus("loading"));
+
         OpenAIVerify(key).then(verified => {
             if (verified) {
                 dispatch(setOpenAIKey(key));
@@ -26,6 +27,11 @@ export const OpenAIKey = () => {
                 dispatch(setOpenAIStatus("error"));
             }
         });
+
+        setTimeout(() => {
+            if( openAI.status === "loading" )
+            dispatch(setOpenAIStatus("error"));
+        }, 5000);
     };
 
     const isLoading = openAI.status === "loading";
