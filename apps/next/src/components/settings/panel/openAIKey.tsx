@@ -1,7 +1,8 @@
+"use client";
 import { RootState, AppDispatch } from "@/datas/store/app";
 import { setOpenAIStatus, setOpenAIKey } from "@/datas/slice/settings";
 import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
@@ -11,9 +12,16 @@ import { OpenAIVerify } from "@/api/openAI/verify";
 export const OpenAIKey = () => {
     const theme = useTheme();
     const { openAI } = useSelector((state: RootState) => state.settings);
-    const [key, setKey] = useState(openAI.key || '');
-
+    const [key, setKey] = useState('');
     const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        setKey(window.settings ? "sd" : "sdf");
+        if (window.settings?.openAI?.getKey()) {
+            const savedKey = "window.settings.openAI.getKey()";
+            if (savedKey) setKey(savedKey);
+        }
+    }, []);
 
     const verifyKey = () => {
         dispatch(setOpenAIStatus("loading"));
