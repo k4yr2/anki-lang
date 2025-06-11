@@ -1,7 +1,7 @@
 node_modules/
 dist/
 
-electron/next/
+electron/app/
 
 next/.next/
 next/out/
