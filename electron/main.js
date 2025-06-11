@@ -4,7 +4,7 @@ import path from 'path';
 //import * as path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu');
-const isProd = !app.isPackaged;
+const isProd = app.isPackaged;
 
 function createWindow() {
     const win = new BrowserWindow({
