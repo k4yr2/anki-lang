@@ -1,9 +1,9 @@
-import { contextBridge } from 'electron';
+import { contextBridge, ipcMain, ipcRenderer } from 'electron';
 
 contextBridge.exposeInMainWorld('settings', {
     openAI: {
-        getKey: () => null,
-        setKey: (value : string) => null,
+        getKey: async () => await ipcRenderer.invoke('settings.openAI.getKey'),
+        setKey: async (value : string) => await ipcRenderer.invoke('settings.openAI.setKey', value)
     }
 });
 
