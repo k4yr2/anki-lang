@@ -10,8 +10,8 @@
   "main": "main.js",
   "private": true,
   "scripts": {
-    "dev": "npx tsc && electron .",
-    "build": "npx tsc && electron-builder"
+    "dev": "electron .",
+    "build": "electron-builder"
   },
   "keywords": [],
   "license": "ISC",
