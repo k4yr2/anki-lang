@@ -12,8 +12,19 @@ import { OpenAIVerify } from "../../../../app/api/openAI/verify";
 export const OpenAIKey = () => {
     const theme = useTheme();
     const { openAI } = useSelector((state: RootState) => state.settings);
-    const [key, setKey] = useState(window.settings.openAI.getKey() || "");
+    const [key, setKey] = useState("");
     const dispatch = useDispatch<AppDispatch>();
+
+    useEffect(() => {
+        (window.settings.openAI.getKey() as unknown as Promise<string>).then((value) => {
+            if (value) {
+                setKey(value);
+                verifyKey();
+            }
+        });
+    }, []);
+
+
 
     const verifyKey = () => {
         dispatch(setOpenAIStatus("loading"));
