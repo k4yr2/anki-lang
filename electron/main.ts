@@ -2,7 +2,7 @@ import { app, BrowserWindow, ipcMain } from 'electron';
 import path from 'path';
 //import * as path from 'path';
 
-app.commandLine.appendSwitch('disable-gpu'); 
+app.commandLine.appendSwitch('disable-gpu');
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -18,10 +18,10 @@ function createWindow(): void {
     });
     mainWindow.setMenu(null);
 
-    if(app.isPackaged) {
+    if(!app.isPackaged) {
         const appPath = app.getAppPath();
         const indexPath = path.join(appPath, "next", "index.html");
-        mainWindow.loadFile(indexPath).catch(err => {
+        mainWindow.loadFile(indexPath).then(() => {console.log("IM in")}).catch(err => {
             console.error("Error loading file:", err);
         });
     }
@@ -48,13 +48,10 @@ app.whenReady().then(() => {
             app.quit();
         }
     });
-});
 
-ipcMain.handle('navigate', (_event, href) => {
-    const win = BrowserWindow.getFocusedWindow();
-    if (!win) return;
+    console.log("asddas");
+    console.log('appPath:', app.getAppPath());
+console.log('indexPath:', path.join(app.getAppPath(), 'next', 'index.html'));
+console.log('isPackaged:', app.isPackaged);
 
-    console.log("wtf");
-    const targetPath = path.join(__dirname, 'next', href, 'index.html');
-    win.loadFile(targetPath);
 });
