@@ -2,18 +2,42 @@
   "name": "electron",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://www.electron.build/configuration#metadata",
+  "author": {
+    "name" : "Kayra",
+    "email" : "kyrzkaya@gmail.com"
+  },
   "main": "dist/main.js",
   "private": true,
   "scripts": {
-    "dev": "npx tsc && electron ."
+    "dev": "npx tsc && electron .",
+    "build": "npx tsc && electron-builder"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@types/node": "^22.15.30",
     "electron": "^23.3.13",
+    "electron-builder": "^26.0.12",
     "typescript": "^5.8.3"
+  },
+  "build" : {
+    "appId": "com.k4yr2.anki-lang",
+    "productName": "Anki Lang",
+    "files": [
+      "dist/main.js",
+      "next/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "output": "./dist"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
+    }
   }
 }

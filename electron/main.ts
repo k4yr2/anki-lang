@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
+import path from 'path';
 //import * as path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu'); 
@@ -16,12 +17,19 @@ function createWindow(): void {
         },
     });
     mainWindow.setMenu(null);
-    
-    mainWindow.loadURL('http://localhost:3000');
+
+    if(app.isPackaged) {
+        mainWindow.loadFile(path.join(__dirname, 'next', 'index.html'));
+    }
+    else {
+        mainWindow.loadURL('http://localhost:3000');
+    }
 
     mainWindow.on('closed', () => {
         mainWindow = null;
     });
+
+    mainWindow.webContents.openDevTools();
 }
 
 app.whenReady().then(() => {
@@ -36,4 +44,13 @@ app.whenReady().then(() => {
             app.quit();
         }
     });
+});
+
+ipcMain.handle('navigate', (_event, href) => {
+    const win = BrowserWindow.getFocusedWindow();
+    if (!win) return;
+
+    console.log("wtf");
+    const targetPath = path.join(__dirname, 'next', href, 'index.html');
+    win.loadFile(targetPath);
 });
