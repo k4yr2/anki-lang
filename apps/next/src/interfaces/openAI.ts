@@ -1,6 +1,11 @@
 interface OpenAI {
-    key : string | undefined;
-    status: "idle" | "loading" | "error" | "success";
+    key : OpenAIKey;
 }
 
 export default OpenAI;
+
+export interface OpenAIKey {
+    value : string;
+    verified : boolean;
+    loading : boolean;
+}

@@ -1,6 +1,6 @@
 "use client";
 import { RootState, AppDispatch } from "@/datas/store/app";
-import { setOpenAIStatus, setOpenAIKey } from "@/datas/slice/settings";
+import { setOpenAILoading, setOpenAIVerified, setOpenAIKey } from "@/datas/slice/settings";
 import { FormLabel, FormControl, Input, Button, Grid, useTheme, CircularProgress, Divider, Box } from "@mui/joy";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,46 +8,37 @@ import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import DangerousOutlinedIcon from '@mui/icons-material/DangerousOutlined';
 import { settingsPanel_labelSx as labelSx } from "./main";
 import { OpenAIVerify } from "../../../../app/api/openAI/verify";
+import useOpenAIKey from "@/hooks/useOpenAIKey";
 
 export const OpenAIKey = () => {
     const theme = useTheme();
-    const { openAI } = useSelector((state: RootState) => state.settings);
-    const [key, setKey] = useState("");
     const dispatch = useDispatch<AppDispatch>();
+    const [input, setInput] = useState("");
+    const key = useOpenAIKey();
 
     useEffect(() => {
-        (window.settings.openAI.getKey() as unknown as Promise<string>).then((value) => {
-            if (value) {
-                setKey(value);
-                verifyKey();
-            }
-        });
-    }, []);
-
-    
-
-
+        setInput(key.value);
+        verifyKey();
+    }, [key.value]);
 
     const verifyKey = () => {
-        dispatch(setOpenAIStatus("loading"));
+        dispatch(setOpenAILoading(true));
 
-        OpenAIVerify(key).then(verified => {
+        OpenAIVerify(input).then(verified => {
             if (verified) {
-                dispatch(setOpenAIKey(key));
-                dispatch(setOpenAIStatus("success"));
+                dispatch(setOpenAIKey(input));
+                dispatch(setOpenAIVerified(true));
             }
             else {
-                dispatch(setOpenAIStatus("error"));
+                dispatch(setOpenAIVerified(false));
             }
         });
 
         setTimeout(() => {
-            if( openAI.status === "loading" )
-            dispatch(setOpenAIStatus("error"));
+            if(key.loading)
+            dispatch(setOpenAIVerified(false));
         }, 5000);
     };
-
-    const isLoading = openAI.status === "loading";
 
     return (
         <>
@@ -57,16 +48,16 @@ export const OpenAIKey = () => {
             <Grid xs={12} sm={9.5}>
                 <FormControl>
                     <Input
-                        value={key}
-                        onChange={(e) => { setKey(e.target.value); }}
+                        value={input}
+                        onChange={(e) => { setInput(e.target.value); }}
                         size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
-                        disabled={isLoading}
+                        disabled={key.loading}
                         startDecorator={
                             <>
-                                <Box sx={{ width: 24, display: 'flex', alignItems: 'center', pr: isLoading ? 1.5 : 1, justifyContent: 'center' }}>    
+                                <Box sx={{ width: 24, display: 'flex', alignItems: 'center', pr: key.loading ? 1.5 : 1, justifyContent: 'center' }}>    
                                     {   
-                                        isLoading ? <CircularProgress size="sm" color="primary" />
-                                        : openAI.status === "success" ? <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />
+                                        key.loading ? <CircularProgress size="sm" color="primary" />
+                                        : key.verified ? <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />
                                         : <DangerousOutlinedIcon sx={{ color: theme.palette.danger["solidBg"] }} />
                                     }
                                 </Box>
@@ -78,7 +69,7 @@ export const OpenAIKey = () => {
                                 variant="soft" 
                                 color="neutral" 
                                 onClick={verifyKey} 
-                                disabled={isLoading}
+                                disabled={key.loading}
                                 sx={{width: 80}}
                             >
                                 Verify
