@@ -1,6 +1,8 @@
 import { app, BrowserWindow } from 'electron';
 //import * as path from 'path';
 
+app.commandLine.appendSwitch('disable-gpu'); 
+
 let mainWindow: BrowserWindow | null = null;
 
 function createWindow(): void {
@@ -13,7 +15,8 @@ function createWindow(): void {
             nodeIntegration: false,
         },
     });
-
+    mainWindow.setMenu(null);
+    
     mainWindow.loadURL('http://localhost:3000');
 
     mainWindow.on('closed', () => {
