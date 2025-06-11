@@ -1,5 +1,8 @@
 node_modules/
 dist/
 
+electron/next/
+
 next/.next/
+next/out/
 next/next-env.d.ts
