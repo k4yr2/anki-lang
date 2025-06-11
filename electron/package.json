@@ -23,6 +23,7 @@
     "typescript": "^5.8.3"
   },
   "build": {
+    "asar": true,
     "appId": "com.k4yr2.anki-lang",
     "productName": "Anki Lang",
     "files": [
