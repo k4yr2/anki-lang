@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
     "esModuleInterop": true,
@@ -9,9 +9,12 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "allowSyntheticDefaultImports": true,
     "lib": ["ES2020", "DOM"],
-    "allowJs": true
-  }
+    "allowJs": true,
+    "outDir": "app"
+  },
+  "include": [
+    "*.ts",
+  ]
 }
