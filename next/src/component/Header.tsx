@@ -17,10 +17,11 @@ export default Header;
 
 const Settings = () => {
     const pathName = usePathname();
-    const href = pathName.startsWith('/settings') ? '/' : '/settings';
+    const active = pathName.startsWith('/settings')
+    const href = active ? '/' : '/settings';
 
     return (
-        <Link href={href} className={clsx(style.settings, "flat-button", "scale32")}>
+        <Link href={href} className={clsx(style.settings, "flat-button", "scale32", active && "active")}>
             <SettingsIcon size={24} color="#FFFFFF" />
         </Link>
     )
