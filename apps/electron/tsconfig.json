@@ -12,10 +12,11 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["ES2020", "DOM"],
     "allowJs": true,
-    "outDir": "app"
+    "rootDir": "src",
+    "outDir": "app/src"
   },
   "include": [
-    "src/**/*.ts",
+    "src/**/*",
     "../../types/",
   ],
   "exclude": [

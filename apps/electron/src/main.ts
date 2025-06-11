@@ -12,7 +12,7 @@ function createWindow() {
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: false,
-            preload: path.join(app.getAppPath(), 'app', 'preload.js'),
+            preload: path.join(app.getAppPath(), 'app', 'src', 'preload.js'),
         },
     });
     win.setMenu(null);

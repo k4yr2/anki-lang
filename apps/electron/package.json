@@ -8,7 +8,7 @@
     "name": "Kayra",
     "email": "kyrzkaya@gmail.com"
   },
-  "main": "app/main.js",
+  "main": "app/src/main.js",
   "scripts": {
     "dev": "npx tsc && electron .",
     "build": "npx tsc && electron-builder"
