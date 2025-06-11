@@ -16,6 +16,7 @@
   "type": "module",
   "devDependencies": {
     "concurrently": "^9.1.2",
+    "cpy": "^11.1.0",
     "rimraf": "^6.0.1",
     "wait-on": "^8.0.3"
   }
