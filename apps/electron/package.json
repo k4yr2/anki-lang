@@ -1,4 +1,5 @@
 {
+  "private": true,
   "name": "electron",
   "version": "1.0.0",
   "description": "Anki Lang Electron App",
@@ -8,7 +9,6 @@
     "email": "kyrzkaya@gmail.com"
   },
   "main": "main.js",
-  "private": true,
   "scripts": {
     "dev": "electron .",
     "build": "electron-builder"
