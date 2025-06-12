@@ -4,6 +4,8 @@ import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import { useState, useEffect } from "react";
 import { extendTheme } from '@mui/joy/styles';
 import { amber, yellow } from "@mui/material/colors";
+import { Provider } from "react-redux";
+import store from "@/data/store";
 
 const theme = extendTheme({
   colorSchemes: {
@@ -38,12 +40,12 @@ const Content = ({ children } : { children : React.ReactNode}) => {
     if(!isClient) return null;
 
     return (
-      <>
+      <Provider store={store}>
         <CssVarsProvider theme={theme}>
           <CssBaseline />
           {children}
         </CssVarsProvider>
-      </>
+      </Provider>
     );
 }
 
