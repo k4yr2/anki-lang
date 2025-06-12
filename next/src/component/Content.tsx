@@ -3,15 +3,17 @@
 import { CssBaseline, CssVarsProvider } from "@mui/joy";
 import { useState, useEffect } from "react";
 import { extendTheme } from '@mui/joy/styles';
+import { amber, yellow } from "@mui/material/colors";
 
 const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
         background: {
-          body: '#ececec',        // Açık ama göz almaz
-          surface: '#e0e0e0',     // Hafif kontrastlı yüzey
+          body: '#f3f4f6',
+          surface: '#e5e7eb',
         },
+        warning: amber
       },
     },
     dark: {
@@ -20,6 +22,7 @@ const theme = extendTheme({
           body: '#1c1c1f',        // Göz yormayan koyu gri
           surface: '#2a2a2e',     // Hafif kontrast yüzey
         },
+        warning: amber
       },
     },
   }
