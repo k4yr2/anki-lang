@@ -1,4 +1,4 @@
-import { FormLabel, Input, Grid, FormControl, Button, IconButton } from "@mui/joy";
+import { FormLabel, Input, Grid, FormControl, Button, IconButton, useTheme } from "@mui/joy";
 import { useState } from "react";
 import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
@@ -18,6 +18,8 @@ export default SettingsPanel;
 //
 
 const SP_OpenAIKey = () => {
+    const theme = useTheme();
+
     const [key, setKey] = useState("");
     const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
 
@@ -36,12 +38,12 @@ const SP_OpenAIKey = () => {
 
     const renderIcon = () => {
         switch (status) {
-            case "idle":
-                return <QuestionMarkOutlinedIcon sx={{ color: yellow[500] }}/>;
-            case "error":
-                return <ErrorIcon/>;
-            case "success":
-                return <CheckCircleOutlinedIcon sx={{ color: green[500]}}/>;
+            case 'idle':
+                return <QuestionMarkOutlinedIcon sx={{ color: theme.palette.warning[700] }} />;
+            case 'error':
+                return <ErrorIcon sx={{ color: theme.palette.danger[500] }} />;
+            case 'success':
+                return <CheckCircleOutlinedIcon sx={{ color: theme.palette.success[400] }} />;
             default:
                 return null;
         }
