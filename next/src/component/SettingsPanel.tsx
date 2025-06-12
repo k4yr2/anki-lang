@@ -1,4 +1,4 @@
-import { FormLabel, Input, Grid } from "@mui/joy";
+import { FormLabel, Input, Grid, FormControl, Button } from "@mui/joy";
 
 const SettingsPanel = () => {
     return (
@@ -15,11 +15,18 @@ export default SettingsPanel;
 const SP_OpenAIKey = () => {
     return (
         <>
-            <Grid xs={12} sm={2} sx={labelSx}>
+            <Grid xs={12} sm={2.5} sx={labelSx}>
                 <FormLabel htmlFor="openai-key">OpenAI Key</FormLabel>
             </Grid>
-            <Grid xs={12} sm={10}>
-                <Input id="openai-key" placeholder="Enter your API Key" fullWidth />
+            <Grid xs={12} sm={9.5}>
+                <FormControl>
+                    <Input size="sm" id="openai-key" placeholder="Enter your API Key" fullWidth 
+                    endDecorator= {
+                        <Button variant="solid" color="primary" size="sm">
+                            Verify
+                        </Button>
+                    }/>
+                </FormControl>
             </Grid>
         </>
     );
