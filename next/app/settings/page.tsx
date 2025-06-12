@@ -9,11 +9,11 @@ export default function SettingsPage() {
   return (
     <div>
         <Grid container rowSpacing={1} columnSpacing={2} alignItems="center">
-          <Grid xs={12} sm={3} sx={labelSx}>
-            <FormLabel>OpenAI Key</FormLabel>
+          <Grid xs={12} sm={2} sx={labelSx}>
+            <FormLabel htmlFor="openai-key">OpenAI Key</FormLabel>
           </Grid>
-          <Grid xs={12} sm={9}>
-            <Input placeholder="Enter your API Key" fullWidth/>
+          <Grid xs={12} sm={10}>
+            <Input id="openai-key" placeholder="Enter your API Key" fullWidth />
           </Grid>
         </Grid>
     </div>
