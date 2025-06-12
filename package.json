@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "prepare:next": "cd next && npm install",
+    "prepare:electron": "cd electron && npm install",
+    "prepare": "npm run prepare:next && npm run prepare:electron",
     "dev:next": "cd next && npm run dev",
     "dev:electron": "wait-on http://localhost:3000 && cd electron && npm run dev",
     "dev": "concurrently -k \"npm run dev:next\" \"npm run dev:electron\"",
