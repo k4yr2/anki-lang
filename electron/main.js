@@ -1,7 +1,5 @@
 import { app, BrowserWindow, globalShortcut } from 'electron';
 import serve from 'electron-serve';
-import path from 'path';
-//import * as path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu');
 const isProd = !process.defaultApp;
@@ -11,7 +9,6 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            //preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true,
             nodeIntegration: false,
         },
