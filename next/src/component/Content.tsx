@@ -11,9 +11,6 @@ const theme = extendTheme({
         background: {
           body: '#ececec',        // Açık ama göz almaz
           surface: '#e0e0e0',     // Hafif kontrastlı yüzey
-          popup: '#f5f5f5',       // Dialog ve popup'lar için
-          level1: '#d6d6d6',      // 1. seviye yüzey
-          level2: '#cccccc',      // 2. seviye yüzey
         },
       },
     },
@@ -22,9 +19,6 @@ const theme = extendTheme({
         background: {
           body: '#1c1c1f',        // Göz yormayan koyu gri
           surface: '#2a2a2e',     // Hafif kontrast yüzey
-          popup: '#2f2f34',       // Açılır içerikler için
-          level1: '#3b3b40',      // 1. seviye yüzey
-          level2: '#49494f',      // 2. seviye yüzey
         },
       },
     },
