@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "@/datas/store/app";
 import { mainTheme } from "@fuuwille/mui-joy";
+import SettingsProvider from "./settings/provider";
 
 const Content = ({ children } : { children : React.ReactNode}) => {
     const [isClient, setIsClient] = useState(false)
@@ -17,10 +18,14 @@ const Content = ({ children } : { children : React.ReactNode}) => {
 
     return (
       <Provider store={store}>
-        <CssVarsProvider theme={mainTheme}>
+      <CssVarsProvider theme={mainTheme}>
+      <SettingsProvider>
+        <>
           <CssBaseline />
           {children}
-        </CssVarsProvider>
+        </>
+      </SettingsProvider>
+      </CssVarsProvider>
       </Provider>
     );
 }
