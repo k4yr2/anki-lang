@@ -1,4 +1,9 @@
-import { FormLabel, Input, Grid, FormControl, Button } from "@mui/joy";
+import { FormLabel, Input, Grid, FormControl, Button, IconButton } from "@mui/joy";
+import { useState } from "react";
+import ErrorIcon from "@mui/icons-material/Error";
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
+import { green, yellow } from "@mui/material/colors";
 
 const SettingsPanel = () => {
     return (
@@ -13,6 +18,35 @@ export default SettingsPanel;
 //
 
 const SP_OpenAIKey = () => {
+    const [key, setKey] = useState("");
+    const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
+
+    const validateKey = () => {
+        setStatus("loading");
+
+        setTimeout(() => {
+            setStatus("success");
+        }, 1500);
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setKey(e.target.value);
+        if (status !== "idle") setStatus("idle");
+    };
+
+    const renderIcon = () => {
+        switch (status) {
+            case "idle":
+                return <QuestionMarkOutlinedIcon sx={{ color: yellow[500] }}/>;
+            case "error":
+                return <ErrorIcon/>;
+            case "success":
+                return <CheckCircleOutlinedIcon sx={{ color: green[500]}}/>;
+            default:
+                return null;
+        }
+    };
+
     return (
         <>
             <Grid xs={12} sm={2.5} sx={labelSx}>
@@ -20,14 +54,37 @@ const SP_OpenAIKey = () => {
             </Grid>
             <Grid xs={12} sm={9.5}>
                 <FormControl>
-                    <Input size="sm" id="openai-key" placeholder="Enter your API Key" fullWidth 
-                    endDecorator= {
-                        <Button variant="solid" color="primary" size="sm">
-                            Verify
-                        </Button>
-                    }/>
+                    <Input 
+                        size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
+                        startDecorator= {
+                            <IconButton 
+                                loading={status == "loading"} 
+                                variant="plain" 
+                                sx={{
+                                    color: green[500],
+                                    pointerEvents : "none",
+                                    '&:hover': {
+                                        backgroundColor: 'transparent',
+                                        boxShadow: 'none',
+                                    },
+                                }}
+                            >
+                                {renderIcon()}
+                            </IconButton>
+                        }
+                        endDecorator={
+                            <Button 
+                                variant="solid" 
+                                color="primary" 
+                                onClick={validateKey} 
+                                disabled={status === "loading"}
+                            >
+                                Verify
+                            </Button>
+                        }
+                    />
                 </FormControl>
-            </Grid>
+            </Grid> 
         </>
     );
 }
