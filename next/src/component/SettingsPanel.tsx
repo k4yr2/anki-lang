@@ -4,6 +4,9 @@ import ErrorIcon from "@mui/icons-material/Error";
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
 import QuestionMarkOutlinedIcon from '@mui/icons-material/QuestionMarkOutlined';
 import { green, yellow } from "@mui/material/colors";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/data/store";
+import { setOpenAIKey, setOpenAIStatus } from "@/slice/settings";
 
 const SettingsPanel = () => {
     return (
@@ -19,25 +22,26 @@ export default SettingsPanel;
 
 const SP_OpenAIKey = () => {
     const theme = useTheme();
+    const { openAI } = useSelector((state: RootState) => state.settings);
+    const [key, setKey] = useState(openAI.key || '');
 
-    const [key, setKey] = useState("");
-    const [status, setStatus] = useState<"idle" | "loading" | "error" | "success">("idle");
+    const dispatch = useDispatch<AppDispatch>();
 
     const validateKey = () => {
-        setStatus("loading");
+        dispatch(setOpenAIStatus("loading"));
 
         setTimeout(() => {
-            setStatus("success");
+            dispatch(setOpenAIStatus("success"));
         }, 1500);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setKey(e.target.value);
-        if (status !== "idle") setStatus("idle");
+        dispatch(setOpenAIKey(e.target.value));
+        if (openAI.status !== "idle") dispatch(setOpenAIStatus("idle"));
     };
 
     const renderIcon = () => {
-        switch (status) {
+        switch (openAI.status) {
             case 'idle':
                 return <QuestionMarkOutlinedIcon sx={{ color: theme.palette.warning[700] }} />;
             case 'error':
@@ -56,11 +60,13 @@ const SP_OpenAIKey = () => {
             </Grid>
             <Grid xs={12} sm={9.5}>
                 <FormControl>
-                    <Input 
+                    <Input
+                        value={key}
+                        onChange={(e) => { setKey(e.target.value); }}
                         size="md" id="openai-key" placeholder="Enter your API Key" fullWidth 
                         startDecorator= {
                             <IconButton 
-                                loading={status == "loading"} 
+                                loading={openAI.status == "loading"} 
                                 variant="plain" 
                                 sx={{
                                     color: green[500],
@@ -79,7 +85,7 @@ const SP_OpenAIKey = () => {
                                 variant="solid" 
                                 color="primary" 
                                 onClick={validateKey} 
-                                disabled={status === "loading"}
+                                disabled={openAI.status === "loading"}
                             >
                                 Verify
                             </Button>
