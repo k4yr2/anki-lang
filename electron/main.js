@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, globalShortcut } from 'electron';
 import serve from 'electron-serve';
 import path from 'path';
 //import * as path from 'path';
@@ -25,7 +25,6 @@ function createWindow() {
         win.loadURL('http://localhost:3000');
     }
 
-    win.webContents.openDevTools();
     return win;
 }
 
@@ -39,6 +38,21 @@ function createWindow() {
     await app.whenReady();
 
     const win = createWindow();
+    let hasFocused = false;
+
+    globalShortcut.register('F12', () => {
+        if (hasFocused) {
+            win.webContents.toggleDevTools();
+        }
+    });
+
+    win.on('focus', () => {
+        hasFocused = true;
+    });
+
+    win.on('blur', () => {
+        hasFocused = false;
+    });
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
@@ -49,9 +63,4 @@ function createWindow() {
             app.quit();
         }
     });
-
-    console.log("asddas");
-    console.log('appPath:', app.getAppPath());
-    console.log('indexPath:', path.join(app.getAppPath(), 'next', 'index.html'));
-    console.log('isPackaged:', app.isPackaged);
 })()
