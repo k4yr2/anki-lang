@@ -22,3 +22,5 @@ const settingsSlice = createSlice({
 });
 
 export default settingsSlice.reducer;
+
+export const { setOpenAIKey, setOpenAIStatus } = settingsSlice.actions;
