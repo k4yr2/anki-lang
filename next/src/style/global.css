@@ -26,6 +26,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding: 8px;
+}
+
 a {
   color: inherit;
   text-decoration: none;
