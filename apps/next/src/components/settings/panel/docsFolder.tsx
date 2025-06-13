@@ -1,9 +1,8 @@
-import { FormControl, FormLabel, Grid, IconButton, Input } from "@mui/joy";
+import { Button, FormControl, FormLabel, Grid, Input } from "@mui/joy";
 import { settingsPanel_labelSx as labelSx } from "./main";
 import { settingsPanel_labelSize as labelSize } from "./main";
 import { settingsPanel_inputSize as inputSize } from "./main";
 import { useState } from "react";
-import FolderIcon from '@mui/icons-material/Folder';
 
 export const StorageDir = () => {
         const [text, setText] = useState("");
@@ -31,15 +30,15 @@ export const StorageDir = () => {
                         value={text}
                         onChange={handleTextChange}
                         size="md" id="docs-folder" placeholder="Select a folder" readOnly fullWidth
-                        startDecorator= {
-                            <IconButton 
-                                variant="soft" 
+                        endDecorator= {
+                            <Button 
+                                variant="solid" 
                                 color="neutral" 
                                 onClick={handlePickFolder}
-                                size="sm"
+                                sx={{width:80}}
                             >
-                                <FolderIcon />
-                            </IconButton>
+                                Pick
+                            </Button>
                         }
                     />
                 </FormControl>
