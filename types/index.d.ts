@@ -1,2 +1,2 @@
 export * from "./window";
-export * from "./api/index";
+export * from "./api";

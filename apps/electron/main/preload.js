@@ -1,10 +1,10 @@
 import { contextBridge, ipcRenderer } from 'electron';
 
-contextBridge.exposeInMainWorld('settings', {
+contextBridge.exposeInMainWorld('api', {
     openAI: {
-        getKey: async () => await ipcRenderer.invoke('settings.openAI.getKey'),
-        setKey: async (value) => await ipcRenderer.invoke('settings.openAI.setKey', value)
+        getKey: async () => await ipcRenderer.invoke('openAI.getKey'),
+        setKey: async (value) => await ipcRenderer.invoke('openAI.setKey', value)
     }
 });
 
-console.log('[preload] loaded')
+console.log('Preload script loaded');

@@ -1,7 +1,7 @@
-import { SettingsAPI } from "./api/settings";
+import { API } from "./api";
 
 declare global {
   interface Window {
-    settings: SettingsAPI;
+    api: API;
   }
 }

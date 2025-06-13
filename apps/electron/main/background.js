@@ -1,11 +1,9 @@
 import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
-import Store from 'electron-store';
 import serve from 'electron-serve';
 import path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu');
 const isProd = !process.defaultApp;
-const store = new Store({ name: 'settings' });
 
 function createWindow() {
     const win = new BrowserWindow({
@@ -14,7 +12,7 @@ function createWindow() {
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: false,
-            preload: path.join(app.getAppPath(), 'app', 'src', 'preload.js'),
+            preload: path.join(app.getAppPath(), 'main', 'preload.js'),
         },
     });
     win.setMenu(null);
@@ -65,10 +63,10 @@ app.whenReady().then(() => {
     });
 });
 
-ipcMain.handle('settings.openAI.getKey', () => {
-    return settingsStore.get("openAI.key") || null;
+ipcMain.handle('openAI.getKey', () => {
+    return store.get("openAI.key") || null;
 });
 
-ipcMain.handle('settings.openAI.setKey', (_, value) => {
-    settingsStore.set("openAI.key", value);
+ipcMain.handle('openAI.setKey', (_, value) => {
+    store.set("openAI.key", value);
 });

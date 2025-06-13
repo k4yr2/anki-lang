@@ -17,7 +17,7 @@ const settingsSlice = createSlice({
     initialState,
     reducers: {
         setOpenAIKey: (state, action) => {
-            window.settings.openAI.setKey(state.openAI.key.value = action.payload);
+            window.api.openAI.setKey(state.openAI.key.value = action.payload);
         },
         setOpenAIVerified: (state, action: PayloadAction<boolean>) => {
             state.openAI.key.verified = action.payload;
@@ -44,7 +44,7 @@ export const saveOpenAIKey = createAsyncThunk(
 
         dispatch(setOpenAILoading(true));
         
-        await window.settings.openAI.setKey(key);
+        await window.api.openAI.setKey(key);
         dispatch(setOpenAIKey(key));
 
         const verified = await OpenAIVerify(key);

@@ -12,7 +12,7 @@ export const useOpenAIKey = () : OpenAIKey => {
         const value = openAI.key.value;
         if(!value || value === '') {
             (async () => {
-                const key = await window.settings.openAI.getKey();
+                const key = await window.api.openAI.getKey();
                 dispatch(saveOpenAIKey(key));
             })();
         }
