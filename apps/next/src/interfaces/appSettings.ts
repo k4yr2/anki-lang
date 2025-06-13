@@ -8,6 +8,6 @@ export default AppSettings;
 
 import { FolgenLoadable } from "@fuuwille/folgen-temp";
 
-interface OpenAISettings {
+export interface OpenAISettings {
     key : FolgenLoadable<string>;
 }
