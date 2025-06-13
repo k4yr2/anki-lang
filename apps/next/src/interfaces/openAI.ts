@@ -1,11 +1,7 @@
+import { FolgenLoadable } from "@fuuwille/folgen-temp";
+
 interface OpenAI {
-    key : OpenAIKey;
+    key : FolgenLoadable<string>;
 }
 
 export default OpenAI;
-
-export interface OpenAIKey {
-    value : string;
-    verified : boolean;
-    loading : boolean;
-}
