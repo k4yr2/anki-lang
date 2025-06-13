@@ -6,5 +6,3 @@ contextBridge.exposeInMainWorld('api', {
         setKey: async (value) => await ipcRenderer.invoke('openAI.setKey', value)
     }
 });
-
-console.log('Preload script loaded');
