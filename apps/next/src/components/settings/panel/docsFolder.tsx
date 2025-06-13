@@ -1,6 +1,4 @@
-import { saveOpenAIKey } from "@/datas/slice/settings";
-import key from "@deemlol/next-icons/build/icons/key";
-import { Box, Button, CircularProgress, Divider, FormControl, FormLabel, Grid, Input } from "@mui/joy";
+import { Button, FormControl, FormLabel, Grid, Input } from "@mui/joy";
 import { settingsPanel_labelSx as labelSx } from "./main";
 import { settingsPanel_labelSize as labelSize } from "./main";
 import { settingsPanel_inputSize as inputSize } from "./main";
@@ -16,12 +14,12 @@ export const StorageDir = () => {
         return (
         <>
             <Grid xs={labelSize.xs} sm={labelSize.sm} sx={labelSx}>
-                <FormLabel htmlFor="storeage-dir">Storage Dir</FormLabel>
+                <FormLabel htmlFor="docs-folder">Docs Folder</FormLabel>
             </Grid>
             <Grid xs={inputSize.xs} sm={inputSize.sm}>
                 <FormControl>
                     <Input
-                        size="md" id="storeage-dir" placeholder="Select a folder" fullWidth 
+                        size="md" id="docs-folder" placeholder="Select a folder" fullWidth 
                         endDecorator={
                             <Button 
                                 variant="soft" 

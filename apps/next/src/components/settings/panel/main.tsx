@@ -1,6 +1,6 @@
 import { Grid } from "@mui/joy";
 import OpenAIKey from "./openAIKey";
-import { StorageDir } from "./storageDir";
+import { StorageDir } from "./docsFolder";
 
 const SettingsPanel = () => {
     return (
