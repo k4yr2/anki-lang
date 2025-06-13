@@ -6,6 +6,13 @@ import { settingsPanel_labelSize as labelSize } from "./main";
 import { settingsPanel_inputSize as inputSize } from "./main";
 
 export const StorageDir = () => {
+        const handlePickFolder = async () => {
+            const folder = await window.api.dialog.pickFolder();
+            if (folder) {
+                console.log("Selected folder:", folder);
+            }
+        };
+    
         return (
         <>
             <Grid xs={labelSize.xs} sm={labelSize.sm} sx={labelSx}>
@@ -20,6 +27,7 @@ export const StorageDir = () => {
                                 variant="soft" 
                                 color="neutral" 
                                 sx={{width: 80}}
+                                onClick={handlePickFolder}
                             >
                                 Select
                             </Button>
