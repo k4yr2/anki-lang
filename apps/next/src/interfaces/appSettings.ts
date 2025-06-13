@@ -4,6 +4,9 @@ export interface AppSettings {
     openAI : {
         key : FolgenLoadable<string>;
     }
+    docs : {
+        folder : FolgenLoadable<string>;
+    }
 }
 
 export default AppSettings;
