@@ -1,4 +1,4 @@
-{  
+{
   "private": true,
   "name": "sprachx_next",
   "version": "0.1.0",
@@ -12,6 +12,7 @@
     "@deemlol/next-icons": "^0.1.9",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@fuuwille/folgen-temp": "^1.0.0",
     "@fuuwille/mui-joy": "^0.1.3",
     "@mui/icons-material": "^7.1.1",
     "@mui/joy": "^5.0.0-beta.52",
