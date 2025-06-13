@@ -1,10 +1,12 @@
 import { Grid } from "@mui/joy";
 import OpenAIKey from "./openAIKey";
+import { StorageDir } from "./storageDir";
 
 const SettingsPanel = () => {
     return (
         <Grid container rowSpacing={1} columnSpacing={2} alignItems="center">
             <OpenAIKey />
+            <StorageDir />
         </Grid>
     );
 }
