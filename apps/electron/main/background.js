@@ -1,9 +1,16 @@
 import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
+import Store from 'electron-store';
 import serve from 'electron-serve';
 import path from 'path';
 
 app.commandLine.appendSwitch('disable-gpu');
 const isProd = !process.defaultApp;
+const store = new Store({
+    name: 'settings',
+    cwd: app.getPath('userData'),
+    encryptionKey: 'mein_sprache_welt_mit_sprachx',
+    clearInvalidConfig: true,
+});
 
 function createWindow() {
     const win = new BrowserWindow({
