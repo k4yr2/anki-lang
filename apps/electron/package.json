@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "electron",
+  "name": "sprachx_electron",
   "version": "1.0.0",
   "description": "Anki Lang Electron App",
   "homepage": "https://www.electron.build/configuration#metadata",

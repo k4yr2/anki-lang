@@ -1,5 +1,6 @@
 {
-  "name": "anki-lang",
+  "private": true,
+  "name": "sprachx",
   "version": "1.0.0",
   "description": "",
   "scripts": {
