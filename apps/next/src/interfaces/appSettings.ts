@@ -1,11 +1,11 @@
-import { FolgenLoadable } from "@fuuwille/folgen-temp";
+import { FolgenVerifiable } from "@fuuwille/folgen-temp";
 
 export interface AppSettings {
     openAI : {
-        key : FolgenLoadable<string>;
+        key : FolgenVerifiable<string>;
     }
     docs : {
-        folder : FolgenLoadable<string>;
+        folder : FolgenVerifiable<string>;
     }
 }
 

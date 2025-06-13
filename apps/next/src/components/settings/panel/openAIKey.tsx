@@ -19,8 +19,8 @@ export const OpenAIKey = () => {
     const key = useOpenAIKey();
 
     useEffect(() => {
-        setInput(key.value);
-    }, [key.value]);
+        setInput(key.content ?? '');
+    }, [key.content]);
 
     return (
         <>
