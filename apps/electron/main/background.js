@@ -1,4 +1,4 @@
-import { app, BrowserWindow, globalShortcut, ipcMain } from 'electron';
+import { app, BrowserWindow, globalShortcut, ipcMain, dialog } from 'electron';
 import Store from 'electron-store';
 import serve from 'electron-serve';
 import path from 'path';
@@ -68,6 +68,16 @@ app.whenReady().then(() => {
             app.quit();
         }
     });
+});
+
+ipcMain.handle('dialog.pickFolder', async () => {
+    const result = await dialog.showOpenDialog({
+        properties: ['openDirectory'],
+    });
+    if (result.canceled) {
+        return null;
+    }
+    return result.filePaths[0];
 });
 
 ipcMain.handle('openAI.getKey', () => {
