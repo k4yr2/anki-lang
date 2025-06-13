@@ -1,13 +1,9 @@
+import { FolgenLoadable } from "@fuuwille/folgen-temp";
+
 export interface AppSettings {
-    openAI : OpenAISettings
+    openAI : {
+        key : FolgenLoadable<string>;
+    }
 }
 
 export default AppSettings;
-
-//
-
-import { FolgenLoadable } from "@fuuwille/folgen-temp";
-
-export interface OpenAISettings {
-    key : FolgenLoadable<string>;
-}
